@@ -1,0 +1,122 @@
+# ===========================
+# Virtual Environments
+# ===========================
+venv/
+env/
+ENV/
+.venv/
+
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ===========================
+# IDE / Editors
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ===========================
+# OS Generated Files
+# ===========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ===========================
+# Model Files (large binaries)
+# ===========================
+*.keras
+*.h5
+*.pkl
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.pb
+saved_model/
+
+# Exception: track the project model file
+!alzheimers_model.keras
+
+# ===========================
+# Environment / Secrets
+# ===========================
+.env
+.env.local
+.env.production
+*.key
+*.pem
+
+# ===========================
+# Jupyter Notebooks
+# ===========================
+.ipynb_checkpoints/
+
+# ===========================
+# Logs
+# ===========================
+*.log
+logs/
+
+# ===========================
+# Streamlit
+# ===========================
+.streamlit/
+
+# ===========================
+# Distribution / Packaging
+# ===========================
+*.tar.gz
+*.whl
+
+# ===========================
+# Testing / Coverage
+# ===========================
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/

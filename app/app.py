@@ -55,7 +55,7 @@ def load_model_compat(model_path):
         with open(config_path, 'w') as f:
             json.dump(config, f)
 
-        # Re-pack into a temporary .keras file
+        #re-pack into a temporary .keras file
         tmp_keras = os.path.join(tmp_dir, 'patched_model.keras')
         with zipfile.ZipFile(tmp_keras, 'w', zipfile.ZIP_DEFLATED) as zf_out:
             for root, dirs, files in os.walk(tmp_dir):
@@ -71,7 +71,7 @@ def load_model_compat(model_path):
         shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
-# Load model with error handling
+#load model with error handling
 model_path = find_existing_path([
     resolve_asset_path('model', 'alzheimers_model.keras'),
     resolve_asset_path('..', 'model', 'alzheimers_model.keras'),
@@ -96,10 +96,10 @@ class_names = [
 
 st.title("Alzheimer's Detection System")
 
-# Add disclaimer
+#add disclaimer
 st.warning("**Disclaimer:** This tool is for educational/research purposes only and is not a substitute for professional medical diagnosis. Consult a healthcare provider for accurate assessment.")
 
-# Option to use sample image or upload custom image
+#option to use sample image or upload custom image
 col1, col2 = st.columns(2)
 use_sample = False
 
@@ -115,7 +115,7 @@ uploaded_file = st.file_uploader(
     type=['jpg', 'jpeg', 'png']
 )
 
-# Use uploaded file if available, otherwise check for sample image button
+#use uploaded file if available, otherwise check for sample image button
 if use_sample and not uploaded_file:
     sample_image_path = find_existing_path([
         resolve_asset_path('sample_mri.png'),
@@ -133,14 +133,14 @@ if uploaded_file is not None:
         image = Image.open(uploaded_file).convert('L')  # Convert to grayscale
         st.image(image, caption='Uploaded MRI Image', use_container_width=True)
 
-        # Resize and preprocess
+        #resize and preprocess
         image = image.resize((224, 224))
         img_array = np.array(image) / 255.0
         img_array = np.stack([img_array] * 3, axis=-1)  # Duplicate to 3 channels
         img_array = img_array.astype(np.float32)
         img_array = np.expand_dims(img_array, axis=0)
 
-        # Prediction with spinner
+        #prediction with spinner
         with st.spinner('Analyzing image...'):
             prediction = model.predict(img_array)
 
@@ -150,7 +150,7 @@ if uploaded_file is not None:
         st.subheader(f"Prediction: {predicted_class}")
         st.write(f"Confidence: {confidence:.2f}%")
 
-        # Show raw predictions
+        #show raw predictions
         st.subheader("Raw Prediction Probabilities")
         for i, prob in enumerate(prediction[0]):
             st.write(f"{class_names[i]}: {prob * 100:.2f}%")
